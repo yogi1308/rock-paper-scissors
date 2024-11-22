@@ -11,15 +11,16 @@ function playGame() {
             console.log(result);
         }
         else if (result == "You Lose!") {
-            console.log(result);
+            console.log(result + " " + humanChoice + " loses to " + humanChoice);
             ++computerScore;
         }
 
         else if (result == "You Win!") {
-            console.log(result);
+            console.log(result + " " + humanChoice + " beats " + computerChoice);
             ++humanScore;
         }
     }
+    console.log("Your Score: " + humanScore + "\nComputer Score: " + computerScore);
 }
 
 function getComputerChoice () {
