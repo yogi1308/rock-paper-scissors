@@ -1,5 +1,3 @@
-console.log("Hello, World!");
-
 playGame();
 
 function playGame() {
@@ -12,7 +10,19 @@ function playGame() {
 }
 
 function getComputerChoice () {
-    return Math.floor(Math.random() * (3 - 1 + 1) + 1);  //Used this formula to find a random number in the range of 1-3: Math.floor(Math.random() * (max - min + 1) + min); The maximum is inclusive and the minimum is inclusive
+    let computerChoice =  Math.floor(Math.random() * (3 - 1 + 1) + 1);  //Used this formula to find a random number in the range of 1-3: Math.floor(Math.random() * (max - min + 1) + min); The maximum is inclusive and the minimum is inclusive
+    if (computerChoice == 1) {
+        return "Rock";
+    }
+    else if (computerChoice == 2) {
+        return "Paper";
+    }
+    else if (computerChoice == 3) {
+        return "Scissors";
+    }
+    else {
+        return "Some error occured";
+    }
 }
 
 function getHumanChoice () {
