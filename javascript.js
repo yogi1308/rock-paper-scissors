@@ -6,6 +6,19 @@ function playGame() {
     for (let i = 0; i < 5; ++i) {
         let computerChoice = getComputerChoice();
         let humanChoice = getHumanChoice();
+        let result = playRound(humanChoice, computerChoice);
+        if (result == "Tie!!") {
+            console.log(result);
+        }
+        else if (result == "You Lose!") {
+            console.log(result);
+            ++computerScore;
+        }
+
+        else if (result == "You Win!") {
+            console.log(result);
+            ++humanScore;
+        }
     }
 }
 
@@ -30,6 +43,10 @@ function getHumanChoice () {
 }
 
 function playRound(humanChoice , computerChoice) {
+    humanChoice = humanChoice.toUpperCase();
+    computerChoice = computerChoice.toUpperCase()
+    if (humanChoice == computerChoice)
+        return "Tie!!";
 
 }
 
