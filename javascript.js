@@ -3,6 +3,7 @@ playGame();
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
+    console.log("Round of 5!!! Begins Now!!!")
     for (let i = 0; i < 5; ++i) {
         let computerChoice = getComputerChoice();
         let humanChoice = getHumanChoice();
@@ -11,7 +12,7 @@ function playGame() {
             console.log(result);
         }
         else if (result == "You Lose!") {
-            console.log(result + " " + humanChoice + " loses to " + humanChoice);
+            console.log(result + " " + humanChoice + " loses to " + computerChoice);
             ++computerScore;
         }
 
@@ -19,9 +20,15 @@ function playGame() {
             console.log(result + " " + humanChoice + " beats " + computerChoice);
             ++humanScore;
         }
+
+        else if (result == "Invalid! Try Again!") {
+            console.log(result);
+            --i;
+        }
     }
     console.log("Your Score: " + humanScore + "\nComputer Score: " + computerScore);
 }
+
 
 function getComputerChoice () {
     let randomNumber =  Math.floor(Math.random() * (3 - 1 + 1) + 1);  //Used this formula to find a random number in the range of 1-3: Math.floor(Math.random() * (max - min + 1) + min); The maximum is inclusive and the minimum is inclusive
@@ -39,9 +46,11 @@ function getComputerChoice () {
     }
 }
 
+
 function getHumanChoice () {
     return prompt("Rock, Paper, Scissors........SHOOT")
 }
+
 
 function playRound(humanChoice , computerChoice) {
     humanChoice = humanChoice.toUpperCase();
@@ -56,15 +65,17 @@ function playRound(humanChoice , computerChoice) {
                 case "Scissors" :
                     return "You Win!"
             }
+
         case "PAPER":
             switch (computerChoice) {
                 case "Rock" :
                     return "You Win!";
                 case "Paper" :
-                    return "Tie";
+                    return "Tie!!";
                 case "Scissors" :
                     return "You Lose!"
             }
+
         case "SCISSORS":
         switch (computerChoice) {
             case "Rock" :
@@ -72,8 +83,12 @@ function playRound(humanChoice , computerChoice) {
             case "Paper" :
                 return "You Win!";
             case "Scissors" :
-                return "Tie"
+                return "Tie!!";
         }
+
+        default:
+            return "Invalid! Try Again!";
+
     }
 
 }
