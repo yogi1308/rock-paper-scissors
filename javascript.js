@@ -44,9 +44,36 @@ function getHumanChoice () {
 
 function playRound(humanChoice , computerChoice) {
     humanChoice = humanChoice.toUpperCase();
-    computerChoice = computerChoice.toUpperCase()
-    if (humanChoice == computerChoice)
-        return "Tie!!";
+
+    switch (humanChoice) {
+        case "ROCK":
+            switch (computerChoice) {
+                case "Rock" :
+                    return "Tie!!";
+                case "Paper" :
+                    return "You Lose!";
+                case "Scissors" :
+                    return "You Win!"
+            }
+        case "PAPER":
+            switch (computerChoice) {
+                case "Rock" :
+                    return "You Win!";
+                case "Paper" :
+                    return "Tie";
+                case "Scissors" :
+                    return "You Lose!"
+            }
+        case "SCISSORS":
+        switch (computerChoice) {
+            case "Rock" :
+                return "You Lose!";
+            case "Paper" :
+                return "You Win!";
+            case "Scissors" :
+                return "Tie"
+        }
+    }
 
 }
 
