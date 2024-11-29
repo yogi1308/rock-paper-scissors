@@ -1,33 +1,56 @@
-playGame();
+let humanScore = 0;
+let computerScore = 0;
+let humanChoice = ""
+let computerChoice = ""
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    console.log("Round of 5!!! Begins Now!!!")
-    for (let i = 0; i < 5; ++i) {
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
-        let result = playRound(humanChoice, computerChoice);
-        if (result == "Tie!!") {
-            console.log(result);
-        }
-        else if (result == "You Lose!") {
-            console.log(result + " " + humanChoice + " loses to " + computerChoice);
-            ++computerScore;
-        }
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors")
+let options = document.querySelector("#options")
 
-        else if (result == "You Win!") {
-            console.log(result + " " + humanChoice + " beats " + computerChoice);
-            ++humanScore;
-        }
-
-        else if (result == "Invalid! Try Again!") {
-            console.log(result);
-            --i;
-        }
-    }
-    console.log("Your Score: " + humanScore + "\nComputer Score: " + computerScore);
+while ((humanScore != 5) || (computerScore != 5)) {
+    const score = document.createElement("div");
+    score.classList.add("score")
+    options.appendChild(score)
+    let humanScoreDisplay = document.createElement("div")
+    humanScoreDisplay.classList.add("humanScoreDisplay")
+    humanScoreDisplay.textContent = "Your Score" + humanScore
+    score.appendChild(humanScoreDisplay)
+    let computerScoreDisplay = document.createElement("div")
+    computerScoreDisplay.classList.add("computerScoreDisplay")
+    computerScoreDisplay.textContent = "Your Score" + computerScore
+    score.appendChild(computerScoreDisplay)
+    options.addEventListener('click', handleClick)
+    ++humanScore
+    computerScore
 }
+
+function handleClick(event) {
+    const results = document.createElement("div")
+    results.classList.add("results")
+    let target = event.target
+    switch(target.id) {
+        case 'rock':
+            humanChoice = "Rock"
+            computerChoice = getComputerChoice()
+            results.textContent = playRound(humanChoice)
+            break;
+
+        case 'paper':
+            humanChoice = "Paper"
+            computerChoice = getComputerChoice()
+            results.textContent = playRound(humanChoice)
+            break;
+
+        case 'scissors':
+            humanChoice = "Scissors"
+            computerChoice = getComputerChoice()
+            results.textContent = playRound(humanChoice)
+            break;
+    }
+    options.appendChild(results)
+}
+
 
 
 function getComputerChoice () {
@@ -47,32 +70,29 @@ function getComputerChoice () {
 }
 
 
-function getHumanChoice () {
-    return prompt("Rock, Paper, Scissors........SHOOT")
-}
-
-
-function playRound(humanChoice , computerChoice) {
-    humanChoice = humanChoice.toUpperCase();
-    computerChoice = computerChoice.toUpperCase();
-    if ((humanChoice == "ROCK") || (humanChoice == "PAPER") || (humanChoice == "SCISSORS")) {
-        if (humanChoice == computerChoice) {
-            return "Tie!!";
-        }
-
-        else if (((humanChoice == "ROCK") && (computerChoice == "SCISSORS")) || 
-        ((humanChoice == "PAPER") && (computerChoice == "ROCK")) || 
-        ((humanChoice == "SCISSORS") && (computerChoice == "PAPER"))) {
-            return "You Win!";
-        }
-
-        else {
-            return "You Lose!";
-        }
+function playRound(humanChoice) {
+    if (humanChoice == computerChoice) {
+        return "Tie!!";
     }
-    
+
+    else if (((humanChoice == "Rock") && (computerChoice == "Scissors")) || 
+    ((humanChoice == "Paper") && (computerChoice == "Rock")) || 
+    ((humanChoice == "Scissors") && (computerChoice == "Paper"))) {
+        return "You Win!";
+    }
+
     else {
-        return "Invalid! Try Again!"
+        return "You Lose!";
     }
 }
 
+
+function score(result) {
+    if (result == "You Win!")
+        return ++humanScore
+    else if (result == "You Lose!")
+        return ++computerScore
+    else {
+        return
+    }
+}
