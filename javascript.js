@@ -15,7 +15,6 @@ const computerScoreDisplay = document.createElement("div")
 
 function handleClick(event) {
     const results = document.createElement("div")
-    results.classList.add("results")
     let target = event.target
     switch(target.id) {
         case 'rock':
@@ -76,7 +75,7 @@ function playRound(humanChoice) {
 }
 
 
-function scoreDisplay(results) {
+function scoreDisplay(results) {    
     if (results == "Tie!!") {
         humanScoreDisplay.textContent = "Your Score: " + humanScore
         computerScoreDisplay.textContent = "Computer Score: " + computerScore
@@ -98,5 +97,13 @@ function scoreDisplay(results) {
         computerScoreDisplay.textContent = "Computer Score: " + computerScore
         options.appendChild(humanScoreDisplay)
         options.appendChild(computerScoreDisplay)         
+    }
+
+    if (humanScore == 5) {
+        const gameOver = document.createElement("div")
+        gameOver.textContent = "Game Over! You Win!"
+        options.appendChild(gameOver)
+        const finalScore = document.createElement("div")
+        finalScore.textContent = "Final Score\nYour Score: " +  + humanScore + "\nComputer Score: " + computerScore
     }
 }
