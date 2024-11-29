@@ -103,7 +103,11 @@ function scoreDisplay(results) {
         const gameOver = document.createElement("div")
         gameOver.textContent = "Game Over! You Win!"
         options.appendChild(gameOver)
-        const finalScore = document.createElement("div")
-        finalScore.textContent = "Final Score\nYour Score: " +  + humanScore + "\nComputer Score: " + computerScore
+    }
+
+    else if (computerScore == 5) {
+        const gameOver = document.createElement("div")
+        gameOver.textContent = "Game Over! You Lose!"
+        options.appendChild(gameOver)
     }
 }
