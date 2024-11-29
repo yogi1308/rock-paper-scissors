@@ -6,24 +6,12 @@ let computerChoice = ""
 const rock = document.querySelector("#rock")
 const paper = document.querySelector("#paper")
 const scissors = document.querySelector("#scissors")
-let options = document.querySelector("#options")
+const options = document.querySelector("#options")
 
-while ((humanScore != 5) || (computerScore != 5)) {
-    const score = document.createElement("div");
-    score.classList.add("score")
-    options.appendChild(score)
-    let humanScoreDisplay = document.createElement("div")
-    humanScoreDisplay.classList.add("humanScoreDisplay")
-    humanScoreDisplay.textContent = "Your Score" + humanScore
-    score.appendChild(humanScoreDisplay)
-    let computerScoreDisplay = document.createElement("div")
-    computerScoreDisplay.classList.add("computerScoreDisplay")
-    computerScoreDisplay.textContent = "Your Score" + computerScore
-    score.appendChild(computerScoreDisplay)
-    options.addEventListener('click', handleClick)
-    ++humanScore
-    computerScore
-}
+options.addEventListener('click', handleClick)
+
+const humanScoreDisplay = document.createElement("div")
+const computerScoreDisplay = document.createElement("div")
 
 function handleClick(event) {
     const results = document.createElement("div")
@@ -49,6 +37,7 @@ function handleClick(event) {
             break;
     }
     options.appendChild(results)
+    scoreDisplay(results.textContent)
 }
 
 
@@ -87,12 +76,27 @@ function playRound(humanChoice) {
 }
 
 
-function score(result) {
-    if (result == "You Win!")
-        return ++humanScore
-    else if (result == "You Lose!")
-        return ++computerScore
+function scoreDisplay(results) {
+    if (results == "Tie!!") {
+        humanScoreDisplay.textContent = "Your Score: " + humanScore
+        computerScoreDisplay.textContent = "Computer Score: " + computerScore
+        options.appendChild(humanScoreDisplay)
+        options.appendChild(computerScoreDisplay)
+    }
+
+    else if (results == "You Win!") {
+        ++humanScore
+        humanScoreDisplay.textContent = "Your Score: " + humanScore
+        computerScoreDisplay.textContent = "Computer Score: " + computerScore
+        options.appendChild(humanScoreDisplay)
+        options.appendChild(computerScoreDisplay)        
+    }
+
     else {
-        return
+        ++computerScore
+        humanScoreDisplay.textContent = "Your Score: " + humanScore
+        computerScoreDisplay.textContent = "Computer Score: " + computerScore
+        options.appendChild(humanScoreDisplay)
+        options.appendChild(computerScoreDisplay)         
     }
 }
